@@ -51,7 +51,7 @@ def precipitation():
 
     # Query precipitation data for the last 12 months
     results = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= one_year_ago).all()
-
+    session.close()
     # Convert the query results to a dictionary
     precipitation_data = {date: prcp for date, prcp in results}
 
@@ -62,7 +62,7 @@ def precipitation():
 def stations():
     # Query all stations
     results = session.query(Station.station).all()
-
+    session.close()
     # Convert the query results to a list
     station_list = list(np.ravel(results))
 
@@ -91,6 +91,7 @@ def tobs():
         Measurement.station == most_active_station,
         Measurement.date >= one_year_ago
     ).all()
+    session.close()
 
     # Convert the query results to a list of dictionaries
     tobs_data = [{"Date": date, "Temperature": tobs} for date, tobs in results]
@@ -112,7 +113,8 @@ def temp_range(start, end=None):
         func.avg(Measurement.tobs).label('avg_temperature'),
         func.max(Measurement.tobs).label('max_temperature')
     ).filter(Measurement.date.between(start_date, end_date)).all()
-
+    session.close()
+    
     # Convert the query results to a dictionary
     temperature_stats_data = {
         "Start Date": start_date.strftime("%Y-%m-%d"),
