@@ -1,1 +1,3 @@
 # sqlalchemy_challenge
+
+Completion process I would first attempt to find each of these values using my memory, then I would look into the class notes and activities as a way to find out my next course of action when I was lost. After doing these steps I would consult ChatGPT to find out where I went wrong and would use its assistance to correct the code as well as explain its process to me so I could understand for the future how to fulfill these tasks without aid. Due to an operational error i needed to use the absolute path to my sqlite file instead of the relative path. this was mentioned above the code. The relative path was left in but commented out so it may be used by those who can utalize it without the operational error appearing.
